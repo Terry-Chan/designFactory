@@ -1,0 +1,5 @@
+rootProject.name = 'designfactory'
+include 'designImpl'
+include 'designApi'
+include 'designHttp'
+

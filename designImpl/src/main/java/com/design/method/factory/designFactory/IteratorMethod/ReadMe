@@ -1,0 +1,8 @@
+1,使用具体的类来解决问题很容易导致类之间的强耦合
+2，不要使用具体类来编程，要优先使用抽象类和接口来编程
+
+角色：
+迭代器（顶级父类接口） -- DefineIterator
+具体迭代器 （BookShelfIterator）
+集合 -- Aggreateive
+具体结合 -- BookShelf

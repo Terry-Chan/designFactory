@@ -1,0 +1,28 @@
+group 'com.cisc.method.practise' //改写
+version '1.0-SNAPSHOT'
+
+//项目是java项目
+apply plugin: 'java'
+//项目是idea项目
+apply plugin: 'idea'
+
+apply plugin: 'maven'
+
+//jdk版本
+sourceCompatibility = 12
+
+////仓库：gradle会根据从上到下的顺序依次去仓库中寻找依赖
+repositories {
+    //优先从本地仓库获取
+    mavenLocal()
+    //从阿里云或者公司仓库获取
+    maven {
+        url 'http://maven.aliyun.com/nexus/content/groups/public/' //配置阿里云 或者 自己公司的仓库
+    }
+    //从中央仓库获取
+    mavenCentral()
+}
+
+
+
+

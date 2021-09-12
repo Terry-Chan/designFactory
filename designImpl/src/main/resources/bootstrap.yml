@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: DesignMethodFactory
+  cloud:
+    nacos:
+      config:
+        name: DesIginMethodService
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        prefix: DesIginMethodService
+        refresh: true
+    alibaba:
+      seata:
+        tx-service-group: desigin-server

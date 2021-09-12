@@ -1,0 +1,117 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'maven'
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'maven-publish'
+}
+
+group 'com.cisc.method.practise'
+version '1.0-SNAPSHOT'
+
+//仓库：gradle会根据从上到下的顺序依次去仓库中寻找依赖
+repositories {
+    //优先从本地仓库获取
+    mavenLocal()
+    //从阿里云或者公司仓库获取
+    maven {
+        url 'http://127.0.0.1:8881/nexus/#browse/browse:terry_repos' //配置阿里云 或者 自己公司的仓库
+    }
+    //从中央仓库获取
+    mavenCentral()
+}
+
+dependencies {
+    compile('com.cisc.method.practise:designApi:1.0-SNAPSHOT')
+    compile('org.springframework.boot:spring-boot-starter-web:2.5.2')
+    
+    //数据库相关包
+    compile ('com.baomidou:mybatis-plus-boot-starter:3.4.2')
+    compile ('com.alibaba:druid-spring-boot-starter:1.1.10')
+    compile('mysql:mysql-connector-java:8.0.18')
+
+    //多数据源配置
+    compile ('com.baomidou:dynamic-datasource-spring-boot-starter:3.2.0')
+
+    //生成代码
+    compile ('com.baomidou:mybatis-plus-generator:3.4.1')
+    compile("org.apache.velocity:velocity-engine-core:2.3")
+    
+    //搜索引擎
+    compile ("org.springframework.boot:spring-boot-starter-data-elasticsearch")
+
+    //工具包
+    compile("com.google.guava:guava:30.1-jre")
+    compile("com.google.code.gson:gson:2.8.7")
+    
+    //nacos--注册发现,配置中心
+    compile("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2.2.4.RELEASE")
+    compile("com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:2.2.4.RELEASE")
+    
+    //redis,redisson
+    compile("org.springframework.boot:spring-boot-starter-data-redis:2.2.5.RELEASE")
+    compile("org.redisson:redisson-spring-boot-starter:3.13.6")
+
+    //rabbitmq,消息队列
+    compile("org.springframework.boot:spring-boot-starter-amqp:2.2.5.RELEASE")
+
+    //seate，分布式事务
+    compile("com.alibaba.cloud:spring-cloud-starter-alibaba-seata:2.2.5.RELEASE")
+    
+    //spring security,jwt
+    compile("org.springframework.boot:spring-boot-starter-security:2.2.5.RELEASE")
+    compile("com.auth0:java-jwt:3.18.1")
+    
+    
+    //lombok
+    compileOnly 'org.projectlombok:lombok:1.18.4'
+    annotationProcessor 'org.projectlombok:lombok:1.18.4'
+    testCompileOnly 'org.projectlombok:lombok:1.18.4'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.4'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+//maven-publish 扩展名
+publishing {
+    // 配置发布的项目信息
+    publications{
+        library(MavenPublication){
+            // MavenPublication 中有一些属性，主要包括groupId，artifactId，version,from,artifact
+            // 其中groupId，artifactId，version，artifact都是选填的，不填默认去取项目的相关信息；
+            groupId project.group // 项目的group
+            artifactId project.name //项目name
+            version project.version
+            //如果打包成war包填写components.web，如果打成jar包填写components.java
+            from components.java
+        }
+    }
+    // 配置发布的地址
+    repositories{
+        maven{
+            // 私服地址
+            if (project.version.endsWith('-SNAPSHOT')) {
+                url = 'http://127.0.0.1:8881/nexus/repository/maven-snapshots/'
+            } else {
+                url = 'http://127.0.0.1:8881/nexus/repository/maven-releases/'
+            }
+
+            // 验证信息
+            credentials{
+                // 私服的用户与密码
+                username 'admin'
+                password 'Chen631596790'
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
