@@ -3,10 +3,8 @@ package com.design.method.factory.security.jwt;
 
 
 import com.design.method.api.errordict.DesignMethodFactoryException;
-import com.design.method.factory.security.authentication.SecurityAuthenticationToken;
 import org.elasticsearch.common.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;

@@ -2,11 +2,9 @@ package com.design.method.factory.rabbitmq.provider.controller;
 
 
 import com.design.method.api.Response.Response;
-import com.design.method.api.errordict.DesignMethodFactoryException;
 import com.design.method.factory.rabbitmq.dto.ProviderResponseDto;
 import com.design.method.factory.rabbitmq.dto.ProviderRquestDto;
 import com.design.method.factory.rabbitmq.provider.config.RabbitMqConfig;
-import com.design.method.factory.rabbitmq.provider.service.RabbitMqService;
 import com.design.method.factory.rabbitmq.provider.service.RabbitMqServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

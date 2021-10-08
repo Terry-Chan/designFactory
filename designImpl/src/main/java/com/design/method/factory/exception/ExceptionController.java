@@ -3,7 +3,6 @@ package com.design.method.factory.exception;
 import com.design.method.api.Response.Response;
 import com.design.method.api.errordict.DesignMethodFactoryException;
 import com.design.method.api.errordict.ErrorMsgMap;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
